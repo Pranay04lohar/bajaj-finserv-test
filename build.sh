@@ -15,7 +15,7 @@ python3.9 manage.py migrate
 # ✅ Ensure the staticfiles_build directory exists
 mkdir -p staticfiles_build
 
-# ✅ Force Django to collect static files
+# ✅ Collect static files
 python3.9 manage.py collectstatic --noinput --clear
 
 echo "✅ BUILD COMPLETE"
