@@ -14,7 +14,7 @@ beautifulsoup4==4.12.3
 bleach==6.1.0
 blinker==1.8.2
 cachetools==5.3.3
-charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654/work
+charset-normalizer 
 click==8.1.7
 comm==0.2.2
 contourpy==1.2.1
@@ -105,7 +105,7 @@ protobuf==4.25.3
 psutil==5.9.8
 pure-eval==0.2.2
 pyarrow==16.1.0
-pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
+pycparser 
 pydeck==0.9.1
 Pygments==2.18.0
 pyparsing==3.1.2
