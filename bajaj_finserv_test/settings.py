@@ -129,9 +129,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # STATIC FILE CONFIGURATION
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build", "static")  # ✅ Fix for Vercel
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # ✅ Ensure static files are included
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"  # ✅ Use WhiteNoise for static files
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build")  # ✅ Ensure Vercel finds static files
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # ✅ Make sure static files are included
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"  # ✅ WhiteNoise for static handling
 
 
 # MEDIA FILES (If needed)

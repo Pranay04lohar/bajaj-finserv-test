@@ -12,7 +12,10 @@ python3.9 -m pip install -r requirements.txt
 # Apply database migrations
 python3.9 manage.py migrate
 
-# Collect static files (ensures Vercel detects them)
+# ✅ Ensure the staticfiles_build directory exists
+mkdir -p staticfiles_build
+
+# ✅ Force Django to collect static files
 python3.9 manage.py collectstatic --noinput --clear
 
 echo "✅ BUILD COMPLETE"
