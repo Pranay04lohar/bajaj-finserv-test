@@ -56,15 +56,15 @@ INSTALLED_APPS = [
     "corsheaders",  # Handles CORS for API access
 ]
 
+# MIDDLEWARE
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # WhiteNoise for serving static files
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.middleware.authentication.AuthenticationMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
 ROOT_URLCONF = 'bajaj_finserv_test.urls'
@@ -118,11 +118,21 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# STATIC FILES CONFIGURATION (For Vercel)
+# # STATIC FILES CONFIGURATION (For Vercel)
+# STATIC_URL = "/static/"
+# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build", "static")  # Match vercel.json
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# STATIC FILE CONFIGURATION
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build", "static")  # Match vercel.json
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build", "static")  # ✅ Fix for Vercel
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # ✅ Ensure static files are included
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"  # ✅ Use WhiteNoise for static files
+
 
 # MEDIA FILES (If needed)
 MEDIA_URL = "/media/"
