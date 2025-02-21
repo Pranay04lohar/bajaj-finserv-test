@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,21 +25,35 @@ SECRET_KEY = 'django-insecure-sg#z3)s!p1c#(tq))9y=93mtw@m3y7zfg2y2rr3q)q+66$r7ae
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["22BAI70929.onrender.com"]
-DEBUG = False
+# ALLOWED HOSTS
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".vercel.app", ".now.sh", "bajaj-finserv-test.vercel.app"]
+
 
 
 # Application definition
 
+# INSTALLED_APPS = [
+#     'corsheaders',
+#     'django.contrib.admin',
+#     'django.contrib.auth',
+#     'django.contrib.contenttypes',
+#     'django.contrib.sessions',
+#     'django.contrib.messages',
+#     'django.contrib.staticfiles',
+#     'app',
+# ]
+
+# INSTALLED APPS
 INSTALLED_APPS = [
-    'corsheaders',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'app',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "app",  # Ensure your Django app is listed here
+    "whitenoise.runserver_nostatic",  # Handles static files
+    "corsheaders",  # Handles CORS for API access
 ]
 
 MIDDLEWARE = [
@@ -104,6 +118,16 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# STATIC FILES CONFIGURATION (For Vercel)
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build", "static")  # Match vercel.json
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# MEDIA FILES (If needed)
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -131,5 +155,8 @@ STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+
+# DEFAULT WSGI APPLICATION
+WSGI_APPLICATION = "bajaj_finserv_test.wsgi.application"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
